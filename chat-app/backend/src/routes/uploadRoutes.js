@@ -7,17 +7,28 @@ const router = Router();
 // Upload image endpoint
 router.post('/upload', requireAuth, upload.single('image'), (req, res) => {
   try {
+    console.log('Image upload request received:', {
+      hasFile: !!req.file,
+      fileName: req.file?.originalname,
+      fileSize: req.file?.size,
+      mimeType: req.file?.mimetype
+    });
+
     if (!req.file) {
+      console.log('No file provided in image upload');
       return res.status(400).json({ message: 'No image file provided' });
     }
     
-    res.json({ 
+    const response = {
       imageUrl: req.file.path,
       publicId: req.file.filename 
-    });
+    };
+
+    console.log('Image upload successful:', response);
+    res.json(response);
   } catch (error) {
-    console.error('Upload error:', error);
-    res.status(500).json({ message: 'Upload failed' });
+    console.error('Image upload error:', error);
+    res.status(500).json({ message: 'Image upload failed', error: error.message });
   }
 });
 
