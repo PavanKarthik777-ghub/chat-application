@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root { height: 100%; }
+body { @apply bg-gray-50 text-gray-900; }
+
+/* CSS Variables for Dynamic Settings */
+:root {
+  --chat-font-size: 16px;
+}
+
+/* Font Size Classes */
+.text-small {
+  font-size: 14px;
+}
+
+.text-medium {
+  font-size: 16px;
+}
+
+.text-large {
+  font-size: 18px;
+}
+
+/* Chat Density Classes */
+.compact .message-bubble {
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.comfortable .message-bubble {
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Enhanced Cursor Glow Effects */
+@keyframes cursorGlow {
+  0% { 
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(59, 130, 246, 0.2);
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.6), 0 0 60px rgba(59, 130, 246, 0.3);
+  }
+  100% { 
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(59, 130, 246, 0.2);
+  }
+}
+
+@keyframes cursorGlowPurple {
+  0% { 
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.4), 0 0 40px rgba(147, 51, 234, 0.2);
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(147, 51, 234, 0.6), 0 0 60px rgba(147, 51, 234, 0.3);
+  }
+  100% { 
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.4), 0 0 40px rgba(147, 51, 234, 0.2);
+  }
+}
+
+.cursor-glow-blue {
+  animation: cursorGlow 2s ease-in-out infinite;
+}
+
+.cursor-glow-purple {
+  animation: cursorGlowPurple 2s ease-in-out infinite;
+}
+
+/* Dynamic Glow Effect */
+.glow-input {
+  position: relative;
+  overflow: hidden;
+}
+
+.glow-input::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%), 
+    rgba(59, 130, 246, 0.3) 0%, 
+    rgba(147, 51, 234, 0.2) 30%, 
+    transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glow-input:hover::before,
+.glow-input:focus-within::before {
+  opacity: 1;
+}
+
+/* Enhanced Glassmorphism for Glow Inputs */
+.glow-input input {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.glow-input input:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 
+    0 0 0 2px rgba(59, 130, 246, 0.2),
+    0 0 20px rgba(59, 130, 246, 0.3),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Glassmorphism Enhancements */
+.glass-card {
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.glass-input {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+
