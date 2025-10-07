@@ -11,6 +11,13 @@ export function AuthProvider({ children }) {
     let cancelled = false
     async function fetchMe() {
       try {
+        // Only try to fetch user if we're on a protected route
+        const currentPath = window.location.pathname
+        if (currentPath === '/login' || currentPath === '/signup') {
+          if (!cancelled) setLoading(false)
+          return
+        }
+        
         const { data } = await api.get('/api/auth/me')
         if (!cancelled) setUser(data.user)
       } catch (_) {
