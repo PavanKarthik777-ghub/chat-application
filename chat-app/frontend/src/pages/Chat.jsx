@@ -36,6 +36,7 @@ export default function Chat() {
   const [showGroupCreationModal, setShowGroupCreationModal] = useState(false)
   const [showGroupInfoModal, setShowGroupInfoModal] = useState(false)
   const [selectedGroup, setSelectedGroup] = useState(null)
+  const [showMobileChat, setShowMobileChat] = useState(false)
   const listRef = useRef(null)
   const fileInputRef = useRef(null)
   const documentInputRef = useRef(null)
@@ -165,6 +166,8 @@ export default function Chat() {
       ...prev,
       [userId]: 0
     }))
+    // Show chat on mobile
+    setShowMobileChat(true)
   }
 
   const handleGroupSelect = (group) => {
@@ -176,6 +179,8 @@ export default function Chat() {
       ...prev,
       [group._id]: 0
     }))
+    // Show chat on mobile
+    setShowMobileChat(true)
   }
 
   const handleGroupCreated = (newGroup) => {
@@ -444,7 +449,9 @@ export default function Chat() {
         initial={{ x: -300, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="w-80 backdrop-blur-xl bg-white/10 border-r border-white/20 flex flex-col relative z-10"
+        className={`w-80 lg:w-80 md:w-72 sm:w-full backdrop-blur-xl bg-white/10 border-r border-white/20 flex flex-col relative z-10 ${
+          showMobileChat ? 'hidden' : 'flex'
+        } sm:flex`}
       >
         {/* Enhanced Sidebar Header */}
         <div className="p-6 border-b border-white/20 bg-gradient-to-r from-blue-600/80 to-purple-600/80 backdrop-blur-sm text-white relative overflow-hidden">
@@ -567,10 +574,43 @@ export default function Chat() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
-        className="flex-1 flex flex-col backdrop-blur-xl bg-white/5 border-l border-white/20 relative z-10"
+        className={`flex-1 flex flex-col backdrop-blur-xl bg-white/5 border-l border-white/20 relative z-10 ${
+          showMobileChat ? 'block' : 'hidden'
+        } sm:block`}
       >
         {/* Glowing Orbs Background */}
         <ChatOrbs />
+        {/* Mobile Back Button */}
+        <div className="sm:hidden flex items-center gap-3 p-4 border-b border-white/20 bg-white/10">
+          <button
+            onClick={() => setShowMobileChat(false)}
+            className="p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all duration-200"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <div className="flex items-center gap-3">
+            {activeUser?.avatarUrl ? (
+              <img 
+                src={activeUser.avatarUrl} 
+                alt="Avatar" 
+                className="w-8 h-8 rounded-full object-cover"
+              />
+            ) : (
+              <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                {activeUser?.name?.charAt(0)?.toUpperCase()}
+              </div>
+            )}
+            <div>
+              <h2 className="font-semibold text-white text-sm">{activeUser?.name}</h2>
+              <p className="text-white/60 text-xs">
+                {chatType === 'group' ? 'Group' : 'Direct Message'}
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Chat Header */}
         <ChatHeader 
           activeUser={activeUser} 
