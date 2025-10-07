@@ -60,7 +60,11 @@ export default function Signup() {
               className="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-600 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent rounded-3xl" />
-              <User className="w-10 h-10 text-white relative z-10" />
+              <img 
+                src="/logo.png" 
+                alt="Chattr Logo" 
+                className="w-12 h-12 object-contain relative z-10"
+              />
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -71,9 +75,9 @@ export default function Signup() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="text-4xl font-bold text-white mb-3 bg-gradient-to-r from-white to-purple-100 bg-clip-text text-transparent"
+              className="text-4xl font-bold text-white mb-2 bg-gradient-to-r from-white to-purple-100 bg-clip-text text-transparent"
             >
-              Create Account
+              Join Chattr
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0 }}
@@ -81,7 +85,7 @@ export default function Signup() {
               transition={{ delay: 0.8 }}
               className="text-purple-100/80 text-lg"
             >
-              Join us today
+              Create your account today
             </motion.p>
           </motion.div>
 

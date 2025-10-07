@@ -451,20 +451,33 @@ export default function Chat() {
           {/* Header glow effect */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent" />
           <div className="relative z-10 flex items-center gap-3">
-            {user?.avatarUrl ? (
+            <div className="flex items-center gap-3">
               <img 
-                src={user.avatarUrl} 
-                alt="Avatar" 
-                className="w-12 h-12 rounded-full object-cover border-2 border-white/30 shadow-lg"
+                src="/logo.png" 
+                alt="Chattr Logo" 
+                className="w-10 h-10 object-contain"
               />
-            ) : (
-              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                <Users size={24} />
+              <div>
+                <h1 className="font-bold text-xl text-white">Chattr</h1>
+                <p className="text-blue-100 text-sm">Real-time Chat</p>
               </div>
-            )}
-            <div>
-              <h1 className="font-bold text-xl text-white">{user?.name}</h1>
-              <p className="text-blue-100 text-sm">Online</p>
+            </div>
+            <div className="ml-auto flex items-center gap-3">
+              {user?.avatarUrl ? (
+                <img 
+                  src={user.avatarUrl} 
+                  alt="Avatar" 
+                  className="w-10 h-10 rounded-full object-cover border-2 border-white/30 shadow-lg"
+                />
+              ) : (
+                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                  <Users size={20} />
+                </div>
+              )}
+              <div>
+                <h2 className="font-semibold text-lg text-white">{user?.name}</h2>
+                <p className="text-blue-100 text-xs">Online</p>
+              </div>
             </div>
           </div>
         </div>
