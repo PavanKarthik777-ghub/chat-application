@@ -52,7 +52,7 @@ export default function ChatInput({ input, setInput, image, setImage, document, 
     }
   }, [])
   return (
-    <div className="backdrop-blur-xl bg-white/10 border-t border-white/20 p-4 relative">
+    <div className="backdrop-blur-xl bg-white/10 border-t border-white/20 p-4 relative flex-shrink-0">
       {/* Input area glow effect */}
       <div className="absolute inset-0 bg-gradient-to-t from-white/5 via-transparent to-transparent" />
       <div className="flex items-end gap-3 relative z-10">

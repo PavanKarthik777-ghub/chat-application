@@ -441,7 +441,7 @@ export default function Chat() {
   }
 
   return (
-    <div className="h-screen relative flex overflow-hidden">
+    <div className="h-screen relative flex overflow-hidden" style={{ height: '100vh' }}>
       {/* Animated Background */}
       <ChatBackground />
       {/* Enhanced Sidebar */}
@@ -449,9 +449,9 @@ export default function Chat() {
         initial={{ x: -300, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className={`w-80 lg:w-80 md:w-72 sm:w-full backdrop-blur-xl bg-white/10 border-r border-white/20 flex flex-col relative z-10 ${
-          showMobileChat ? 'hidden' : 'flex'
-        } sm:flex`}
+        className={`w-80 lg:w-80 md:w-72 backdrop-blur-xl bg-white/10 border-r border-white/20 flex flex-col relative z-10 ${
+          showMobileChat ? 'hidden sm:flex' : 'flex'
+        }`}
       >
         {/* Enhanced Sidebar Header */}
         <div className="p-6 border-b border-white/20 bg-gradient-to-r from-blue-600/80 to-purple-600/80 backdrop-blur-sm text-white relative overflow-hidden">
@@ -575,8 +575,8 @@ export default function Chat() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
         className={`flex-1 flex flex-col backdrop-blur-xl bg-white/5 border-l border-white/20 relative z-10 ${
-          showMobileChat ? 'block' : 'hidden'
-        } sm:block`}
+          showMobileChat ? 'flex' : 'hidden sm:flex'
+        }`}
       >
         {/* Glowing Orbs Background */}
         <ChatOrbs />
@@ -622,7 +622,7 @@ export default function Chat() {
 
         {/* Enhanced Messages Area */}
         <div className="flex-1 overflow-y-auto bg-gradient-to-b from-transparent via-white/5 to-transparent">
-          <div ref={listRef} className="p-6 space-y-1">
+          <div ref={listRef} className="p-6 space-y-1 min-h-full">
             <AnimatePresence>
               {groupedMessages.map((item, index) => (
                 <React.Fragment key={item.type === 'date' ? `date-${item.timestamp}` : item._id}>
