@@ -158,11 +158,14 @@ export default function Signup() {
             >
               <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent" />
               {loading ? (
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                  className="w-6 h-6 border-2 border-white border-t-transparent rounded-full relative z-10"
-                />
+                <>
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    className="w-6 h-6 border-2 border-white border-t-transparent rounded-full relative z-10"
+                  />
+                  <span className="relative z-10">Waking up the Server...</span>
+                </>
               ) : (
                 <>
                   <span className="relative z-10">Create Account</span>
